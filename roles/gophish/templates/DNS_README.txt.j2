@@ -1,0 +1,19 @@
+Howdy!
+
+Thanks for using this Ansible playbook to setup Gophish on Ubuntu 18.04.
+
+To correctly setup your DNS, place the following TXT records in your configuration:
+
+SPF
+
+v=spf1 ip4:{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }} ~all
+
+DKIM
+
+{{ dkim_key['content'] | b64decode }}
+
+For the DKIM key, you'll need to delete all of the double quotes and whitespace surrounding the value so that it looks something like this:
+
+v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG ...
+
+Hope this helps!

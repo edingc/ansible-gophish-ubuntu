@@ -1,0 +1,5 @@
+---
+hostname: gophish
+gophish_user: ubuntu
+admin_email: admin@eding.xyz
+domain_name: eding.xyz

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+yes | cp "/etc/letsencrypt/live/{{ domain_name }}/fullchain.pem" "/opt/gophish/{{ domain_name }}.crt"
+yes | cp "/etc/letsencrypt/live/{{ domain_name }}/privkey.pem" "/opt/gophish/{{ domain_name }}.key"
+
+systemctl restart gophish
+
+exit 0

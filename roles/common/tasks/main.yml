@@ -1,0 +1,39 @@
+- name: ensure hostname is set
+  hostname:
+    name: "{{ hostname }}"
+
+- name: ensure user is created with sudo privileges
+  user:
+    name: "{{ gophish_user }}"
+    state: present
+    groups: sudo
+    append: true
+    create_home: true
+    shell: /bin/bash
+
+- name: ensure password authentication for root is disabled
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    regexp: '^#?PermitRootLogin'
+    line: 'PermitRootLogin prohibit-password'
+
+- name: ensure apt is up-to-date
+  apt:
+    update_cache: yes
+
+- name: ensure needed system packages are installed
+  apt:
+    name: "{{ system_install_packages }}"
+    state: latest
+
+- name: ensure ssh is allowed
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: enable ufw and deny all traffic by default
+  ufw:
+    state: enabled
+    policy: deny
+    direction: incoming

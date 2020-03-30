@@ -1,0 +1,4 @@
+gophish_install_packages: [ 'postfix', 'unzip', 'opendkim', 'opendkim-tools' ]
+dkim_selector: default
+postfix_hostname: gophish
+postfix_inet_interfaces: 127.0.0.1

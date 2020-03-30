@@ -1,0 +1,223 @@
+- name: ensure needed packages are installed
+  apt:
+    name: "{{ gophish_install_packages }}"
+    state: latest
+
+- name: ensure postfix main.cf configuration file is in place
+  template:
+    src: main.cf.j2
+    dest: /etc/postfix/main.cf
+    backup: yes
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart postfix
+
+- name: ensure opendkim postfix socket is created
+  file:
+    path: /var/spool/postfix/opendkim
+    state: directory
+    owner: opendkim
+    group: postfix
+    mode: '0755'
+
+- name: ensure opendkim directories are created
+  file:
+    path: /etc/opendkim/keys/{{ domain_name }}
+    state: directory
+    owner: opendkim
+    group: opendkim
+    mode: '0755'
+
+- name: ensure opendkim defaults file is in place
+  copy:
+    src: opendkim
+    dest: /etc/default/opendkim
+    backup: yes
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart opendkim
+
+- name: ensure opendkim configuration file is in place
+  copy:
+    src: opendkim.conf
+    dest: /etc/opendkim.conf
+    backup: yes
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart opendkim
+
+- name: ensure opendkim signing table is in place
+  template:
+    src: signing.table.j2
+    dest: /etc/opendkim/signing.table
+    backup: yes
+    owner: opendkim
+    group: opendkim
+    mode: '0644'
+  notify:
+    - restart opendkim
+
+- name: ensure opendkim trusted hosts file is in place
+  template:
+    src: trusted.hosts.j2
+    dest: /etc/opendkim/trusted.hosts
+    backup: yes
+    owner: opendkim
+    group: opendkim
+    mode: '0644'
+  notify:
+    - restart opendkim
+
+- name: ensure opendkim key table is in place
+  template:
+    src: key.table.j2
+    dest: /etc/opendkim/key.table
+    backup: yes
+    owner: opendkim
+    group: opendkim
+    mode: '0644'
+  notify:
+    - restart opendkim
+
+- name: ensure opendkim signing key is generated
+  command: "opendkim-genkey -b 2048 -s {{ dkim_selector }} -d {{ domain_name }} -D /etc/opendkim/keys/{{ domain_name }}"
+  args:
+    creates: "/etc/opendkim/keys/{{ domain_name}}/{{ dkim_selector }}.private"
+  notify:
+    - restart opendkim
+
+- name: ensure ownership is correct on opendkim signing key
+  file:
+    path: "/etc/opendkim/keys/{{ domain_name }}/{{ dkim_selector }}.private"
+    owner: opendkim
+    group: opendkim
+
+- name: ensure ssl-cert group can read /etc/ssl/private directory
+  file:
+    path: "/etc/ssl/private"
+    mode: '0640'
+
+- name: ensure postfix user is in opendkim and ssl-cert groups
+  user:
+    name: postfix
+    groups: opendkim, ssl-cert
+    append: yes
+
+- name: ensure postfix is started and enabled at boot
+  systemd:
+    name: postfix
+    state: started
+    enabled: yes
+
+- name: ensure opendkim is started and enabled at boot
+  systemd:
+    name: opendkim
+    state: started
+    enabled: yes
+
+- name: download latest gophish .zip
+  get_url:
+    validate_certs: true
+    url: https://getgophish.com/releases/latest/linux/64
+    dest: "/home/{{ gophish_user }}/gophish.zip"
+    mode: '0755'
+    owner: "{{ gophish_user }}"
+    group: "{{ gophish_user }}"
+
+- name: ensure directory for gophish is created
+  file:
+    path: "/opt/gophish"
+    state: directory
+    mode: '0755'
+    owner: "{{ gophish_user }}"
+    group: "{{ gophish_user }}"
+
+- name: unzip gophish distribution
+  unarchive:
+    src: "/home/{{ gophish_user }}/gophish.zip"
+    dest: "/opt/gophish"
+    remote_src: true
+    owner: "{{ gophish_user }}"
+    group: "{{ gophish_user }}"
+
+- name: ensure certbot ssl is in gophish directory
+  copy:
+    src: "/etc/letsencrypt/live/{{ domain_name }}/fullchain.pem"
+    dest: "/opt/gophish/{{ domain_name }}.crt"
+    remote_src: true
+    owner: "{{ gophish_user }}"
+    group: "{{ gophish_user }}"
+  notify:
+    - restart gophish
+
+- name: ensure certbot key is in gophish directory
+  copy:
+    src: "/etc/letsencrypt/live/{{ domain_name }}/privkey.pem"
+    dest: "/opt/gophish/{{ domain_name }}.key"
+    remote_src: true
+    owner: "{{ gophish_user }}"
+    group: "{{ gophish_user }}"
+  notify:
+    - restart gophish
+
+- name: ensure post-renewal hook is setup for certbot renew
+  template:
+    src: renew_cert.sh.j2
+    dest: /etc/letsencrypt/renewal-hooks/deploy/renew_cert.sh
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: ensure permissions are correct on gophish directory
+  file:
+    path: /opt/gophish
+    owner: "{{ gophish_user }}"
+    group: "{{ gophish_user }}"
+    recurse: true
+
+- name: ensure gophish binary is allowed to bind to ports using setcap
+  shell: setcap CAP_NET_BIND_SERVICE=+eip /opt/gophish/gophish
+
+- name: ensure gophish is configured
+  template:
+    src: config.json.j2
+    dest: "/opt/gophish/config.json"
+    owner: "{{ gophish_user }}"
+    group: "{{ gophish_user }}"
+    mode: '0644'
+  notify:
+    - restart gophish
+
+- name: ensure a service file exists for gophish
+  template:
+    src: gophish.service.j2
+    dest: "/lib/systemd/system/gophish.service"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: ensure gophish service is restarted and enabled
+  systemd:
+    name: gophish
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+
+- name: register contents of dkim key as a variable
+  slurp:
+    src: /etc/opendkim/keys/{{ domain_name }}/default.txt
+  register: dkim_key
+
+- name: ensure DNS README is placed into the home data_directory
+  template:
+    src: DNS_README.txt.j2
+    dest: /home/{{ gophish_user }}/DNS_README.txt
+    owner: "{{ gophish_user }}"
+    group: "{{ gophish_user }}"
+    mode: '0755'

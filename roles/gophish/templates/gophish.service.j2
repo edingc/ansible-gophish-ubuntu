@@ -1,0 +1,17 @@
+[Unit]
+Description=Gophish service
+After=network-online.target
+
+[Service]
+Environment="GOPHISH_BIN_PATH=/opt/gophish/"
+Environment="GOPHISH_LOG_PATH=/opt/gophish/log/"
+WorkingDirectory=/opt/gophish/
+ExecStart=/opt/gophish/gophish
+
+User={{ gophish_user }}
+Group={{ gophish_user }}
+
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target

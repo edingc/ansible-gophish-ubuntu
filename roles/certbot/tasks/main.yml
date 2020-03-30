@@ -1,0 +1,34 @@
+- name: ensure certbot ppa is added
+  apt_repository:
+    repo: 'ppa:certbot/certbot'
+
+- name: ensure certbot is installed
+  apt:
+    name: certbot
+    state: latest
+    update_cache: yes
+
+- name: ensure 80/tcp is open for cerbot (and gophish)
+  ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+
+- name: ensure 80/tcp is open for cerbot (and gophish)
+  ufw:
+    rule: allow
+    port: '443'
+    proto: tcp
+
+- name: request a certificate with standalone mode if needed
+  shell: "certbot certonly --standalone --noninteractive --preferred-challenges http -d {{ domain_name }} -n --email {{ admin_email }} --agree-tos"
+  args:
+    creates: /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem
+
+- name: ensure cronjob for certificate renewal exists
+  cron:
+    name: certbot auto renew
+    job: "certbot renew"
+    minute: '0'
+    hour: '2'
+    user: root
