@@ -60,7 +60,6 @@
 * [Atom](https://github.com/atom/atom)
 
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -142,7 +141,7 @@ Project Link: [https://github.com/edingc/ansible-gophish-ubuntu](https://github.
 [issues-shield]: https://img.shields.io/github/issues/edingc/ansible-gophish-ubuntu.svg?style=flat-square
 [issues-url]: https://github.com/edingc/ansible-gophish-ubuntu/issues
 [license-shield]: https://img.shields.io/github/license/edingc/ansible-gophish-ubuntu.svg?style=flat-square
-[license-url]: https://github.com/edingc/ansible-gophish-ubuntu/blob/master/LICENSE.txt
+[license-url]: https://github.com/edingc/ansible-gophish-ubuntu/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/codyeding
 [product-screenshot]: images/screenshot.png
