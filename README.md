@@ -51,16 +51,13 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`edingc`, `ansible-gophish-ubuntu`, `edingc`, `cody@codyeding.com`
 
+### Built With/On
 
-### Built With
-
-* []()
-* []()
-* []()
+* [Ansible](https://github.com/ansible/ansible)
+* [Gophish](https://github.com/gophish/gophish)
+* [Ubuntu](https://ubuntu.com/)
+* [Atom](https://github.com/atom/atom)
 
 
 
