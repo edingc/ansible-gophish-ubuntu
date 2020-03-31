@@ -15,7 +15,7 @@
 
 <p align="center">
 
-![ansible-gophish-ubuntu Screen Shot][product-screenshot]
+<img src="https://github.com/edingc/ansible-gophish-ubuntu/raw/master/images/screenshot.png" alt="ansible-gophish-ubuntu Screen Shot" />
 
 </p>
 
