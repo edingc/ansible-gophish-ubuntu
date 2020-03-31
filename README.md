@@ -85,6 +85,8 @@ After the playbook has been run against the target host, a file containing neede
 DNS entries will be placed in the home directory of Gophish user. Place these
 entries into your DNS.
 
+By default, the ports needed to access the Gophish user interface are not opened. I recommend [setting up a SOCKS tunnel](https://www.digitalocean.com/community/tutorials/how-to-route-web-traffic-securely-without-a-vpn-using-a-socks-tunnel) to access the administration page.
+
 The user guide for Gophish can be found at the [Gophish documentation website](https://getgophish.com/documentation/).
 
 <!-- CONTRIBUTING -->
