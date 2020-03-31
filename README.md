@@ -15,6 +15,8 @@
 
 <p align="center">
 
+![ansible-gophish-ubuntu Screen Shot][product-screenshot]
+
   <h3 align="center">ansible-gophish-ubuntu</h3>
 
   <p align="center">
@@ -31,24 +33,15 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
+* [Built With](#built-with)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
-
-
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-![ansible-gophish-ubuntu Screen Shot][product-screenshot]
 
 ### Built With/On
 
@@ -67,6 +60,9 @@ To get a local copy up and running follow these simple steps.
 
 As this is an Ansible playbook, Ansible is required to be installed on a control
 machine. [Ansible is available for almost every platform.](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+
+This playbook was developed using a Digital Ocean Ubuntu 18.04 instance, but should
+work on any Ubuntu 18.04 installation.
 
 ### Installation
 
@@ -117,6 +113,7 @@ Project Link: [https://github.com/edingc/ansible-gophish-ubuntu](https://github.
 
 * [Digital Ocean Community](https://www.digitalocean.com/community) for the basis of the "common" task
 * [Gophish](https://github.com/gophish/gophish) for the bits that download and extract Gophish
+* [Othneil Drew](https://github.com/othneildrew/Best-README-Template) for the great README.md template
 * Numerous other websites, Google searches and StackOverflow posts that yielded individual bits and bobs
 necessary to get OpenDKIM, Postfix, SSL and TLS all playing nicely together
 
