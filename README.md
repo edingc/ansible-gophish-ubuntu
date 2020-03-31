@@ -16,14 +16,14 @@
 <br />
 <p align="center">
 
-  <h3 align="center">ansible-ubuntu-gophish</h3>
+  <h3 align="center">ansible-gophish-ubuntu</h3>
 
   <p align="center">
     An Ansible playbook to setup Gophish quickly on an Ubuntu 18.04 system. Comes complete with working SSL, DKIM and TLS. Instructions for DNS requirements provided upon completion.
     <br />
-    <a href="https://github.com/edingc/ansible-ubuntu-gophish/issues">Report Bug</a>
+    <a href="https://github.com/edingc/ansible-gophish-ubuntu/issues">Report Bug</a>
     ·
-    <a href="https://github.com/edingc/ansible-ubuntu-gophish/issues">Request Feature</a>
+    <a href="https://github.com/edingc/ansible-gophish-ubuntu/issues">Request Feature</a>
   </p>
 </p>
 
@@ -53,7 +53,7 @@
 
 Here's a blank template to get started:
 **To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`edingc`, `ansible-ubuntu-gophish`, `edingc`, `cody@codyeding.com`
+`edingc`, `ansible-gophish-ubuntu`, `edingc`, `cody@codyeding.com`
 
 
 ### Built With
@@ -79,9 +79,9 @@ npm install npm@latest -g
 
 ### Installation
 
-1. Clone the ansible-ubuntu-gophish
+1. Clone the ansible-gophish-ubuntu
 ```sh
-git clone https://github.com/edingc/ansible-ubuntu-gophish.git
+git clone https://github.com/edingc/ansible-gophish-ubuntu.git
 ```
 2. Install NPM packages
 ```sh
@@ -119,7 +119,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Your Name - [@edingc](https://twitter.com/edingc) - cody@codyeding.com
 
-Project Link: [https://github.com/edingc/ansible-ubuntu-gophish](https://github.com/edingc/ansible-ubuntu-gophish)
+Project Link: [https://github.com/edingc/ansible-gophish-ubuntu](https://github.com/edingc/ansible-gophish-ubuntu)
 
 
 
@@ -136,16 +136,16 @@ Project Link: [https://github.com/edingc/ansible-ubuntu-gophish](https://github.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/edingc/ansible-ubuntu-gophish.svg?style=flat-square
-[contributors-url]: https://github.com/edingc/ansible-ubuntu-gophish/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/edingc/ansible-ubuntu-gophish.svg?style=flat-square
-[forks-url]: https://github.com/edingc/ansible-ubuntu-gophish/network/members
-[stars-shield]: https://img.shields.io/github/stars/edingc/ansible-ubuntu-gophish.svg?style=flat-square
-[stars-url]: https://github.com/edingc/ansible-ubuntu-gophish/stargazers
-[issues-shield]: https://img.shields.io/github/issues/edingc/ansible-ubuntu-gophish.svg?style=flat-square
-[issues-url]: https://github.com/edingc/ansible-ubuntu-gophish/issues
-[license-shield]: https://img.shields.io/github/license/edingc/ansible-ubuntu-gophish.svg?style=flat-square
-[license-url]: https://github.com/edingc/ansible-ubuntu-gophish/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/edingc/ansible-gophish-ubuntu.svg?style=flat-square
+[contributors-url]: https://github.com/edingc/ansible-gophish-ubuntu/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/edingc/ansible-gophish-ubuntu.svg?style=flat-square
+[forks-url]: https://github.com/edingc/ansible-gophish-ubuntu/network/members
+[stars-shield]: https://img.shields.io/github/stars/edingc/ansible-gophish-ubuntu.svg?style=flat-square
+[stars-url]: https://github.com/edingc/ansible-gophish-ubuntu/stargazers
+[issues-shield]: https://img.shields.io/github/issues/edingc/ansible-gophish-ubuntu.svg?style=flat-square
+[issues-url]: https://github.com/edingc/ansible-gophish-ubuntu/issues
+[license-shield]: https://img.shields.io/github/license/edingc/ansible-gophish-ubuntu.svg?style=flat-square
+[license-url]: https://github.com/edingc/ansible-gophish-ubuntu/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://linkedin.com/in/codyeding
 [product-screenshot]: images/screenshot.png
