@@ -17,6 +17,8 @@
 
 ![ansible-gophish-ubuntu Screen Shot][product-screenshot]
 
+</p>
+
   <h3 align="center">ansible-gophish-ubuntu</h3>
 
   <p align="center">
@@ -26,7 +28,8 @@
     ·
     <a href="https://github.com/edingc/ansible-gophish-ubuntu/issues">Request Feature</a>
   </p>
-</p>
+
+
 
 
 
