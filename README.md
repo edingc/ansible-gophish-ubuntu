@@ -85,7 +85,7 @@ After the playbook has been run against the target host, a file containing neede
 DNS entries will be placed in the home directory of Gophish user. Place these
 entries into your DNS.
 
-The use guide for Gophish can be found at the [Gophish documentation website](https://getgophish.com/documentation/).
+The user guide for Gophish can be found at the [Gophish documentation website](https://getgophish.com/documentation/).
 
 <!-- CONTRIBUTING -->
 ## Contributing
