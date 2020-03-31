@@ -48,8 +48,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![ansible-gophish-ubuntu Screen Shot][product-screenshot]]
-
+![ansible-gophish-ubuntu Screen Shot][product-screenshot]
 
 ### Built With/On
 
@@ -66,11 +65,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+As this is an Ansible playbook, Ansible is required to be installed on a control
+machine. [Ansible is available for almost every platform.](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
 ### Installation
 
@@ -78,19 +74,19 @@ npm install npm@latest -g
 ```sh
 git clone https://github.com/edingc/ansible-gophish-ubuntu.git
 ```
-2. Install NPM packages
+2. Run the Ansible playbook
 ```sh
-npm install
+ansible-playbook site.yml
 ```
-
-
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+After the playbook has been run against the target host, a file containing needed
+DNS entries will be placed in the home directory of Gophish user. Place these
+entries into your DNS.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+The use guide for Gophish can be found at the [Gophish documentation website](https://getgophish.com/documentation/).
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -116,17 +112,13 @@ Your Name - [@edingc](https://twitter.com/edingc) - cody@codyeding.com
 
 Project Link: [https://github.com/edingc/ansible-gophish-ubuntu](https://github.com/edingc/ansible-gophish-ubuntu)
 
-
-
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-* []()
-* []()
-
-
-
+* [Digital Ocean Community](https://www.digitalocean.com/community) for the basis of the "common" task
+* [Gophish](https://github.com/gophish/gophish) for the bits that download and extract Gophish
+* Numerous other websites, Google searches and StackOverflow posts that yielded individual bits and bobs
+necessary to get OpenDKIM, Postfix, SSL and TLS all playing nicely together
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
